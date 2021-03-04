@@ -6,7 +6,7 @@ import 'package:flutter/foundation.dart';
 import 'package:matrix_link_text/link_text.dart';
 import 'code_block.dart';
 import 'package:flutter_highlight/themes/monokai.dart';
-import 'package:flutter_math/flutter_math.dart';
+//import 'package:flutter_math/flutter_math.dart';
 
 import 'image_properties.dart';
 import 'spoiler.dart';
@@ -518,7 +518,7 @@ class HtmlRichTextParser extends StatelessWidget {
     "section",
   ];
 
-  static get _supportedElements => List()
+  static get _supportedElements => []
     ..addAll(_supportedStyleElements)
     ..addAll(_supportedSpecialtyElements)
     ..addAll(_supportedBlockElements);
@@ -551,7 +551,7 @@ class HtmlRichTextParser extends StatelessWidget {
     dom.Document document = parser.parse(data);
     dom.Node body = document.body;
 
-    List<Widget> widgetList = new List<Widget>();
+    List<Widget> widgetList = <Widget>[];
     ParseContext parseContext = ParseContext(
       rootWidgetList: widgetList,
       childStyle: DefaultTextStyle.of(context).style,
@@ -815,7 +815,7 @@ class HtmlRichTextParser extends StatelessWidget {
               nextContext.parentElement = span;
             }
             // do we have latex stuffs?
-            if (node.attributes['data-mx-maths'] != null) {
+            /*if (node.attributes['data-mx-maths'] != null) {
               parseContext.addWidget(WidgetSpan(
                 child: SingleChildScrollView(
                   child: Math.tex(
@@ -830,7 +830,7 @@ class HtmlRichTextParser extends StatelessWidget {
                 alignment: PlaceholderAlignment.middle,
               ));
               return; // we don't want to render the children (which is a fallback)
-            }
+            }*/
             break;
           case "ruby":
           case "rt":
@@ -1284,7 +1284,7 @@ class HtmlRichTextParser extends StatelessWidget {
             continue myDefault;
 
           case "div":
-            if (node.attributes['data-mx-maths'] != null) {
+            /*if (node.attributes['data-mx-maths'] != null) {
               parseContext.rootWidgetList.add(SingleChildScrollView(
                 child: Math.tex(
                   node.attributes['data-mx-maths'],
@@ -1296,7 +1296,7 @@ class HtmlRichTextParser extends StatelessWidget {
                 scrollDirection: Axis.horizontal,
               ));
               return;
-            }
+            }*/
             continue myDefault;
 
           myDefault:
